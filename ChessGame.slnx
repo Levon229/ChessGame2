@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ChessGame.Core/ChessGame.Core.csproj" />
+  <Project Path="ChessGame.Logic/ChessGame.Logic.csproj" Id="99f331c8-bba0-434e-80bb-25d44416cc70" />
+</Solution>
