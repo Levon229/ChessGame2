@@ -5,7 +5,7 @@ using System.Text;
 
 
 namespace ChessGame.Logic.Services
-{
+{   
     public class BoardPrinter
     {
         public static void Print(char[,] cells)
@@ -24,4 +24,24 @@ namespace ChessGame.Logic.Services
             }
         }
     }
+
+
+
+    public static class ChessRules
+    {
+        
+        private static readonly char[] AllowedPieces = { 'P', 'K', 'B', 'R', 'Q', 'T' };
+
+        public static bool IsValidPiece(char piece)
+        {
+            
+            foreach (var allowed in AllowedPieces)
+            {
+                if (allowed == piece)
+                    return true;
+            }
+            return false;
+        }
+    }
+
 }

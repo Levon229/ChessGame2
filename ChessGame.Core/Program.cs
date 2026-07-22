@@ -7,6 +7,7 @@ class Program
 
     static void Main()
     {
+        Console.ForegroundColor = ConsoleColor.DarkRed;
         Board board = new Board();
 
         while (true)
@@ -15,6 +16,7 @@ class Program
             BoardPrinter.Print(board.GetCells());
 
             Console.Write("\nMutqagreq kordinat (orinak h7): ");
+
             string input = Console.ReadLine();
             if (string.IsNullOrEmpty(input) || input.Length < 2) continue;
 
@@ -23,14 +25,31 @@ class Program
 
             if (!board.IsValid(row, col))
             {
-                Console.WriteLine("Sxal kordinat!");
-                Console.ReadKey();
+                Console.WriteLine("Sxal kordinat (MUTQAGREL NORIC)!");
+                Console.ReadKey(); continue;
+            }
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write("Mutqagreq figur (P, K, B, R, Q, T): ");
+
+            string pieceInput = Console.ReadLine();
+
+            if (string.IsNullOrEmpty(pieceInput))
+            {
+                continue;
             }
 
-            Console.Write("Mutqagreq figur (P, K, B, R, Q, T): ");
-            char piece = Console.ReadLine().ToUpper()[0];
+            char piece = char.ToUpper(pieceInput[0]);
 
-            board.TrySetPiece(row, col, piece); 
+
+            if (!ChessRules.IsValidPiece(piece))
+            {
+                Console.WriteLine("Sxal qar eq yntrel! (SKSEQ NORIC)");
+                Console.ReadKey();
+                continue;
+            }
+
+
+            board.TrySetPiece(row, col, piece);
         }
     }
 }

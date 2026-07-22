@@ -22,15 +22,15 @@ namespace ChessGame.Logic.Models
             return row >= 0 && row < 8 && col >= 0 && col < 8;
         }
 
-        
+
         public bool TrySetPiece(int row, int col, char piece)
         {
-            if (!IsValid(row, col)) 
+            if (!IsValid(row, col))
             {
-                return false; 
+                return false;
             }
 
-            _cells[row, col] = piece; 
+            _cells[row, col] = piece;
             return true;
         }
 
