@@ -27,21 +27,23 @@ namespace ChessGame.Logic.Services
 
 
 
-    public static class ChessRules
-    {
-        
-        private static readonly char[] AllowedPieces = { 'P', 'K', 'B', 'R', 'Q', 'T' };
 
-        public static bool IsValidPiece(char piece)
+
+    
+        public static class ChessRules
         {
-            
-            foreach (var allowed in AllowedPieces)
+            private static readonly List<char> AllowedPieces = new List<char> { 'P', 'K', 'B', 'R', 'Q', 'T' };
+
+            public static bool IsValidPiece(char piece)
             {
-                if (allowed == piece)
-                    return true;
+                foreach (var allowed in AllowedPieces)
+                {
+                    if (allowed == piece)
+                        return true;
+                }
+                return false;
             }
-            return false;
         }
     }
 
-}
+
