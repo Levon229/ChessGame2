@@ -16,21 +16,18 @@ namespace ChessGame.Logic.Models
                     _cells[i, j] = ((i + j) % 2 == 0) ? '#' : '*';
         }
 
-
-        public bool IsValid(int row, int col)
+        public bool IsValid(Coordinate coordinate)
         {
-            return row >= 0 && row < 8 && col >= 0 && col < 8;
+            return coordinate.Row >= 0 && coordinate.Row < 8
+                && coordinate.Col >= 0 && coordinate.Col < 8;
         }
 
-
-        public bool TrySetPiece(int row, int col, char piece)
+        public bool TrySetPiece(Coordinate coordinate, char piece)
         {
-            if (!IsValid(row, col))
-            {
+            if (!IsValid(coordinate))
                 return false;
-            }
 
-            _cells[row, col] = piece;
+            _cells[coordinate.Row, coordinate.Col] = piece;
             return true;
         }
 

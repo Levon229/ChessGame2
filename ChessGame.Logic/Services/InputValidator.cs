@@ -9,10 +9,10 @@ namespace ChessGame.Logic.Services
     public class BoardPrinter
     {
         public static void Print(char[,] cells)
-        {
+        {   
             string columns = "ABCDEFGH";
             Console.WriteLine("  " + string.Join(" ", columns.ToCharArray()));
-
+              
             for (int i = 0; i < 8; i++)
             {
                 Console.Write(8 - i + " ");

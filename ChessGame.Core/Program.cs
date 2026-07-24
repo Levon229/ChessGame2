@@ -1,4 +1,5 @@
-﻿using ChessGame.Logic.Models;
+﻿using ChessGame.Logic;
+using ChessGame.Logic.Models;
 using ChessGame.Logic.Services;
 using System;
 
@@ -7,6 +8,7 @@ class Program
 
     static void Main()
     {
+
         Console.ForegroundColor = ConsoleColor.DarkRed;
         Board board = new Board();
 
@@ -16,30 +18,23 @@ class Program
             BoardPrinter.Print(board.GetCells());
 
             Console.Write("\nMutqagreq kordinat (orinak h7): ");
-
             string input = Console.ReadLine();
-            if (string.IsNullOrEmpty(input) || input.Length < 2) continue;
 
-            int col = input[0] - 'a';
-            int row = 8 - (input[1] - '0');
-
-            if (!board.IsValid(row, col))
+            if (!Coordinate.TryParse(input, out Coordinate coord))
             {
                 Console.WriteLine("Sxal kordinat (MUTQAGREL NORIC)!");
-                Console.ReadKey(); continue;
-            }
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.Write("Mutqagreq figur (P, K, B, R, Q, T): ");
-
-            string pieceInput = Console.ReadLine();
-
-            if (string.IsNullOrEmpty(pieceInput))
-            {
+                Console.ReadKey();
                 continue;
             }
 
-            char piece = char.ToUpper(pieceInput[0]);
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write("Mutqagreq figur (P, K, B, R, Q, T): ");
+            string pieceInput = Console.ReadLine();
 
+            if (string.IsNullOrEmpty(pieceInput))
+                continue;
+
+            char piece = char.ToUpper(pieceInput[0]);
 
             if (!ChessRules.IsValidPiece(piece))
             {
@@ -48,9 +43,9 @@ class Program
                 continue;
             }
 
-
-            board.TrySetPiece(row, col, piece);
+            board.TrySetPiece(coord, piece);
         }
     }
-}
 
+
+}
