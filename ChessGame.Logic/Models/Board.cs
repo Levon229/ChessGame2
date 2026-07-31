@@ -31,8 +31,15 @@ namespace ChessGame.Logic.Models
             return true;
         }
 
+        public bool ClearCell(Coordinate coordinate)
+        {
+            if (!IsValid(coordinate))
+                return false;
+
+            _cells[coordinate.Row, coordinate.Col] = ((coordinate.Row + coordinate.Col) % 2 == 0) ? '#' : '*';
+            return true;
+        }
+
         public char[,] GetCells() => _cells;
     }
-
-
 }

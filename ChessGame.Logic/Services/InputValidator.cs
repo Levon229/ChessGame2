@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChessGame.Logic.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -44,6 +45,25 @@ namespace ChessGame.Logic.Services
                 return false;
             }
         }
+
+
+
+
+    public static class PieceFactory
+    {
+        public static Piece Create(char pieceChar, int row, int col)
+        {
+            switch (char.ToUpper(pieceChar))
+            {
+                case 'B':
+                    return new Bishop(row, col);
+                case 'Q':
+                    return new Queen(row, col);
+                default:
+                    return new Piece(row, col);
+            }
+        }
     }
+}
 
 
