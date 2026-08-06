@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-
-namespace ChessGame.Logic.Models
+﻿namespace ChessGame.Logic.Models
 {
     public class Board
     {

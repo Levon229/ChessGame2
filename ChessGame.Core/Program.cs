@@ -1,23 +1,8 @@
-﻿using ChessGame.Logic;
-using ChessGame.Logic.Models;
-using ChessGame.Logic.Services;
-using System;
-
+﻿using ChessGame.Core.ConsoleApp;
 using ChessGame.Logic;
+using ChessGame.Logic.Interfaces;
 using ChessGame.Logic.Models;
 using ChessGame.Logic.Services;
-using System;
-
-using ChessGame.Logic;
-using ChessGame.Logic.Models;
-using ChessGame.Logic.Services;
-using System;
-
-using ChessGame.Logic;
-using ChessGame.Logic.Models;
-using ChessGame.Logic.Services;
-using System;
-using System.Threading.Channels;
 
 class Program
 {
@@ -44,7 +29,7 @@ class Program
             }
 
             Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.Write("Mutqagreq figur (P, K, B, R, Q, T): ");
+            Console.Write("Mutqagreq figur ( K, B, R, Q, T): ");
             string pieceInput = Console.ReadLine();
 
             if (string.IsNullOrEmpty(pieceInput))
@@ -62,7 +47,7 @@ class Program
 
             board.TrySetPiece(coord, piece);
 
-            Piece pieceObj = PieceFactory.Create(piece, coord.Row, coord.Col);
+            IChessPiece pieceObj = PieceFactory.Create(piece, coord.Row, coord.Col);
 
             Console.Clear();
             BoardPrinter.Print(board.GetCells());
