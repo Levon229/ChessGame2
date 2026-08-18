@@ -1,15 +1,16 @@
-﻿namespace ChessGame.Logic.Models
-{
+﻿namespace ChessGame.Logic.Models;
+
     public class Bishop : Piece
     {
-        public Bishop(int row, int col) : base(row, col) { }
+        
+        public Bishop(Coordinate coordinate) : base( coordinate) { }
 
-        public override bool IsValidMove(int endRow, int endCol)
+        public override bool IsValidMove(Coordinate coordinate)
         {
-            int rowDiff = System.Math.Abs(endRow - Row);
-            int colDiff = System.Math.Abs(endCol - Col);
+            int rowDiff = System.Math.Abs(coordinate.Row - Row);
+            int colDiff = System.Math.Abs(coordinate.Col - Col);
 
             return rowDiff == colDiff && rowDiff != 0;
         }
     }
-}
+

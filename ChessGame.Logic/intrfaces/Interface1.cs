@@ -1,7 +1,7 @@
-﻿namespace ChessGame.Logic.Interfaces
-{
+﻿namespace ChessGame.Logic.Interfaces;
+
     public interface IChessPiece
     {
-        bool IsValidMove(int endRow, int endCol);
+        bool IsValidMove(Coordinate coordinate);
     }
-}
+

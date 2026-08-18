@@ -1,14 +1,14 @@
 ﻿
-namespace ChessGame.Logic.Models
-{
+namespace ChessGame.Logic.Models;
+
     public class King : Piece
     {
-        public King(int row, int col) : base(row, col) { }
+        public King(Coordinate coordinate) : base(coordinate) { }
 
-        public override bool IsValidMove(int endRow, int endCol)
+        public override bool IsValidMove(Coordinate coordinate)
         {
-            int rowDiff = System.Math.Abs(endRow - Row);
-            int colDiff = System.Math.Abs(endCol - Col);
+            int rowDiff = Math.Abs(coordinate.Row - Row);
+            int colDiff = Math.Abs(coordinate.Col - Col);
 
             bool withinOneSquare = rowDiff <= 1 && colDiff <= 1;
             bool actuallyMoved = rowDiff != 0 || colDiff != 0;
@@ -16,4 +16,4 @@ namespace ChessGame.Logic.Models
             return withinOneSquare && actuallyMoved;
         }
     }
-}
+

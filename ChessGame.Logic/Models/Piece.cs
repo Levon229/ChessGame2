@@ -7,15 +7,13 @@ namespace ChessGame.Logic.Models
         public int Row { get; set; }
         public int Col { get; set; }
 
-        public Piece(int row, int col)
+        public Piece(Coordinate coordinate)
         {
-            Row = row;
-            Col = col;
+            Row = coordinate.Row;
+            Col = coordinate.Col;
         }
 
-        public virtual bool IsValidMove(int endRow, int endCol)
-        {
-            return false;
-        }
+        public abstract bool IsValidMove(Coordinate coordinate);
+
     }
 }

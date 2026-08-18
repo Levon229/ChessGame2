@@ -1,17 +1,16 @@
-﻿namespace ChessGame.Logic.Models
-{
+﻿namespace ChessGame.Logic.Models;
+
     public class Knight : Piece
     {
-        public Knight(int row, int col) : base(row, col) { }
+        public Knight(Coordinate coordinate) : base(coordinate) { }
 
-        public override bool IsValidMove(int endRow, int endCol)
+        public override bool IsValidMove(Coordinate coordinate)
         {
-            int rowDiff = System.Math.Abs(endRow - Row);
-            int colDiff = System.Math.Abs(endCol - Col);
+            int rowDiff = Math.Abs(coordinate.Row - Row);
+            int colDiff = Math.Abs(coordinate.Col - Col);
 
             bool isValidShape = (rowDiff == 2 && colDiff == 1) || (rowDiff == 1 && colDiff == 2);
 
             return isValidShape;
         }
     }
-}

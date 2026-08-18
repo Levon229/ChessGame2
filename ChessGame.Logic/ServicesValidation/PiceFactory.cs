@@ -1,33 +1,34 @@
-﻿using ChessGame.Logic.Interfaces;
+﻿using System;
+using ChessGame.Logic;
+using ChessGame.Logic.Interfaces;
 using ChessGame.Logic.Models;
-using System.Net.NetworkInformation;
-
-
 
 namespace ChessGame.Logic.Services
 {
     public static class PieceFactory
     {
-        public static IChessPiece Create(char pieceChar, int row, int col)
+        public static IChessPiece Create(char pieceChar, Coordinate coordinate)
         {
-            switch (char.ToUpper(pieceChar))
+            PieceType type = ChessRules.CharToPieceType(pieceChar);
+
+            switch (type)
             {
-                case 'B':
-                    return new Bishop(row, col);
-                case 'Q':
-                    return new Queen(row, col);
-                case 'R':
-                    return new Rook(row, col);
-                case 'T':
-                    return new Knight(row, col);  
-                    
-                case 'K':
-                    return new King(row, col);
+                case PieceType.Bishop:
+                    return new Bishop(coordinate);
+                case PieceType.Queen:
+                    return new Queen(coordinate);
+                case PieceType.Rook:
+                    return new Rook(coordinate);
+                case PieceType.Knight:
+                    return new Knight(coordinate);
+                case PieceType.King:
+                    return new King(coordinate);
                 default:
-                    throw new ArgumentException("Anhayt qari tip: " + pieceChar);
+                    throw new ArgumentException("Anhayt PieceType: " + type);
             }
         }
     }
 }
+
 
 

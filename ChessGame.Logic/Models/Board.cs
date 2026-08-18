@@ -1,5 +1,5 @@
-﻿namespace ChessGame.Logic.Models
-{
+﻿namespace ChessGame.Logic.Models;
+
     public class Board
     {
         private char[,] _cells = new char[8, 8];
@@ -37,4 +37,3 @@
 
         public char[,] GetCells() => _cells;
     }
-}

@@ -1,17 +1,19 @@
-﻿namespace ChessGame.Logic.Models
-{
+﻿namespace ChessGame.Logic.Models;
+
     public class Queen : Piece
     {
-        public Queen(int row, int col) : base(row, col) { }
+        public Queen(Coordinate coordinate) : base(coordinate) { }
 
-        public override bool IsValidMove(int endRow, int endCol)
+        public override bool IsValidMove(Coordinate coordinate)
         {
-            bool sameRow = Row == endRow;
-            bool sameCol = Col == endCol;
-            bool diagonal = System.Math.Abs(endRow - Row) == System.Math.Abs(endCol - Col);
-            bool actuallyMoved = Row != endRow || Col != endCol;
+            bool sameRow = Row == coordinate.Row;
+            bool sameCol = Col == coordinate.Col;
+            bool diagonal = System.Math.Abs(coordinate.Row - Row) == System.Math.Abs(coordinate.Col - Col);
+            bool actuallyMoved = Row != coordinate.Row || Col != coordinate.Col;
 
             return (sameRow || sameCol || diagonal) && actuallyMoved;
+
+            ;
         }
     }
-}
+
