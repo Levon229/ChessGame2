@@ -1,36 +1,45 @@
-﻿namespace ChessGame.Logic
+﻿namespace ChessGame.Logic;
+
+public struct Coordinate
 {
+    public int Row { get; }
+    public int Col { get; }
 
-    public struct Coordinate
+    private Coordinate(int row, int col)
     {
-        public int Row { get; }
-        public int Col { get; }
+        Row = row;
+        Col = col;
+    }
 
-        private Coordinate(int row, int col)
-        {
-            Row = row;
-            Col = col;
-        }
+    public static Coordinate FromRowCol(int row, int col)
+    {
+        return new Coordinate(row, col);
+    }
 
-        public static bool TryParse(string input, out Coordinate coordinate)
-        {
-            coordinate = default;
+    public string ToChessNotation()
+    {
+        char colChar = (char)('a' + Col);
+        int rowNumber = 8 - Row;
+        return $"{colChar}{rowNumber}";
+    }
 
-            if (string.IsNullOrEmpty(input) || input.Length != 2)
-                return false;
+    public static bool TryParse(string input, out Coordinate coordinate)
+    {
+        coordinate = default;
 
-            char colChar = char.ToLower(input[0]);
-            char rowChar = input[1];
+        if (string.IsNullOrEmpty(input) || input.Length != 2)
+            return false;
 
-            if (colChar < 'a' || colChar > 'h' || rowChar < '1' || rowChar > '8')
-                return false;
+        char colChar = char.ToLower(input[0]);
+        char rowChar = input[1];
 
-            int col = colChar - 'a';
-            int row = 8 - (rowChar - '0');
+        if (colChar < 'a' || colChar > 'h' || rowChar < '1' || rowChar > '8')
+            return false;
 
-            coordinate = new Coordinate(row, col);
-            return true;
-        }
+        int col = colChar - 'a';
+        int row = 8 - (rowChar - '0');
+
+        coordinate = new Coordinate(row, col);
+        return true;
     }
 }
-
